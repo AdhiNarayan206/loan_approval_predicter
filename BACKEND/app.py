@@ -1,14 +1,20 @@
 from flask import Flask, request, jsonify
 import joblib
 import numpy as np
+import os
 from flask_cors import CORS
+
 app = Flask(__name__)
 CORS(app)
-import os
+
+# Build cross-platform paths relative to the current file
+current_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(current_dir, '..', 'MODEL FILE', 'loan_approval_model.joblib')
+scaler_path = os.path.join(current_dir, '..', 'MODEL FILE', 'scaler.joblib')
 
 # Load the saved model and scaler
-model = joblib.load(r"loan_approval_predicter\MODEL FILE\loan_approval_model.joblib")
-scaler = joblib.load(r"loan_approval_predicter\MODEL FILE\scaler.joblib")
+model = joblib.load(model_path)
+scaler = joblib.load(scaler_path)
 
 @app.route('/')
 def hello():
