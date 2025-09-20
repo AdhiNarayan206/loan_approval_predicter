@@ -9,13 +9,36 @@ CORS(app)
 model = joblib.load(r"loan_approval_predicter\MODEL FILE\loan_approval_model.joblib")
 scaler = joblib.load(r"loan_approval_predicter\MODEL FILE\scaler.joblib")
 
+@app.route('/')
+def hello():
+    return "Congratulations! Your loan approval API is running."
+
 @app.route('/predict', methods=['POST'])
-def predict():
-    data = request.json
-    features = np.array(data['features']).reshape(1, -1)
-    features_scaled = scaler.transform(features)
-    prediction = model.predict(features_scaled)
-    return jsonify({'prediction': prediction.tolist()})
+def check_eligibility():
+    try:
+        data= request.get_json(force=True)
+        features = [
+            data['no_of_dependents'],
+            data['education'],
+            data['self_employed'],
+            data['income_annum'],
+            data['loan_amount'],
+            data['loan_term'],
+            data['cibil_score'],
+            data['residential_assets_value'],
+            data['commercial_assets_value'],
+            data['luxury_assets_value'],
+            data['bank_asset_value']
+        ]
+        final_features = np.array(features).reshape(1, -1)
+        scaled_features = scaler.transform(final_features)
+        prediction = model.predict(scaled_features)
+        prediction_proba = model.predict_proba(scaled_features)
+        output='Approved' if prediction[0]==1 else 'Rejected'
+        confidence=prediction_proba[0][prediction[0]]
+        return jsonify({'prediction': output, 'confidence': float(confidence)})
+    except Exception as e:
+        return jsonify({'error': 'Invalid input format', 'message': str(e)}), 400
 
 if __name__ == '__main__':
     app.run(debug=True)
