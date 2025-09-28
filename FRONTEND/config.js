@@ -3,7 +3,7 @@
 const CONFIG = {
     // API Configuration
     API: {
-        BASE_URL: 'http://localhost:5000', // Change this for production
+        BASE_URL: 'api link :   https://loan-approval-api-aeja.onrender.com/predict', // Change this for production
         ENDPOINTS: {
             PREDICT: '/predict',
             HEALTH: '/'

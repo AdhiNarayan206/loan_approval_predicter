@@ -1,0 +1,13 @@
+{
+  "name": "loan-approval-frontend",
+  "version": "1.0.0",
+  "description": "Loan Approval Predictor Frontend",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build process needed' && exit 0",
+    "start": "echo 'Static site ready for deployment'"
+  },
+  "keywords": ["loan", "approval", "predictor", "frontend"],
+  "author": "AdhiNarayan206",
+  "license": "MIT"
+}
