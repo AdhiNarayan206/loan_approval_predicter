@@ -1,5 +1,5 @@
 // Configuration
-const API_BASE_URL = 'https://loan-approval-api-aeja.onrender.com/predict'; // Change this to your backend URL when deployed
+const API_BASE_URL = 'https://loan-approval-api-aeja.onrender.com'; // Change this to your backend URL when deployed
 
 // DOM Elements
 const loanForm = document.getElementById('loanForm');
@@ -100,20 +100,33 @@ function getFormData() {
 
 // Submit prediction to API
 async function submitPrediction(data) {
-    const response = await fetch(`${API_BASE_URL}/predict`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    });
-    
-    if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || `Server error: ${response.status}`);
+    try {
+        console.log('Making request to:', `${API_BASE_URL}/predict`);
+        console.log('Request data:', data);
+        
+        const response = await fetch(`${API_BASE_URL}/predict`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        console.log('Response status:', response.status);
+        
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            console.error('API Error:', errorData);
+            throw new Error(errorData.message || `Server error: ${response.status}`);
+        }
+        
+        const result = await response.json();
+        console.log('API Response:', result);
+        return result;
+    } catch (error) {
+        console.error('Fetch error:', error);
+        throw error;
     }
-    
-    return await response.json();
 }
 
 // Form validation
