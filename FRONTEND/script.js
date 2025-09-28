@@ -1,5 +1,5 @@
 // Configuration
-const API_BASE_URL = 'http://localhost:5000'; // Change this to your backend URL when deployed
+const API_BASE_URL = 'https://loan-approval-api-aeja.onrender.com/predict'; // Change this to your backend URL when deployed
 
 // DOM Elements
 const loanForm = document.getElementById('loanForm');
