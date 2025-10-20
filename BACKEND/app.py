@@ -37,6 +37,7 @@ def check_eligibility():
             data['luxury_assets_value'],
             data['bank_asset_value']
         ]
+        loan_type = data['loan_type']
         final_features = np.array(features).reshape(1, -1)
         scaled_features = scaler.transform(final_features)
         prediction = model.predict(scaled_features)
