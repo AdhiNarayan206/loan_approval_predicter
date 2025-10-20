@@ -1,5 +1,6 @@
 // Configuration
-const API_BASE_URL = 'https://loan-approval-api-aeja.onrender.com'; // Change this to your backend URL when deployed
+const API_BASE_URL = 'http://127.0.0.1:5000'; // Change this to your backend URL when deployed
+// const API_BASE_URL = 'https://loan-approval-api-aeja.onrender.com'; // Production URL
 
 // DOM Elements
 const loanForm = document.getElementById('loanForm');
@@ -90,6 +91,9 @@ function getFormData() {
             data[key] = parseInt(value);
         } else if (key === 'no_of_dependents' || key === 'loan_term' || key === 'cibil_score') {
             data[key] = parseInt(value);
+        } else if (key === 'loan_type') {
+            // Keep loan_type as string
+            data[key] = value;
         } else {
             data[key] = parseFloat(value);
         }
@@ -241,6 +245,20 @@ function showLoading() {
     hideAllContainers();
     loadingSpinner.style.display = 'block';
     submitBtn.disabled = true;
+}
+
+// Hide loading spinner and re-enable buttons
+function hideLoading() {
+    if (loadingSpinner) {
+        loadingSpinner.style.display = 'none';
+    }
+    if (submitBtn) {
+        submitBtn.disabled = false;
+    }
+    // exploreLoanBtn is declared later; it's safe to reference at call time
+    if (typeof exploreLoanBtn !== 'undefined' && exploreLoanBtn) {
+        exploreLoanBtn.disabled = false;
+    }
 }
 
 function showResult(prediction) {
@@ -422,3 +440,208 @@ showError = function(message) {
     originalShowError(message);
     setTimeout(scrollToTop, 100);
 };
+
+// ============================================
+// LOAN EXPLORATION FUNCTIONALITY
+// ============================================
+
+let currentFormData = null; // Store form data for loan exploration
+
+// DOM Elements for loan exploration
+const exploreLoanBtn = document.getElementById('exploreLoanBtn');
+const recommendationsContainer = document.getElementById('recommendationsContainer');
+const loansList = document.getElementById('loansList');
+const backToResultBtn = document.getElementById('backToResultBtn');
+
+// Initialize loan exploration event listeners
+if (exploreLoanBtn) {
+    exploreLoanBtn.addEventListener('click', handleExploreLoan);
+}
+
+if (backToResultBtn) {
+    backToResultBtn.addEventListener('click', showResultsFromRecommendations);
+}
+
+// Update the form submit handler to store form data
+const originalHandleFormSubmit = handleFormSubmit;
+handleFormSubmit = async function(e) {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+        return;
+    }
+    
+    // Store form data for later use
+    currentFormData = getFormData();
+    
+    showLoading();
+    
+    try {
+        const response = await fetch(`${API_BASE_URL}/predict`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(currentFormData)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.error) {
+            throw new Error(data.error);
+        }
+        
+        showResult(data);
+        
+        // Show "Explore Loans" button only if approved
+        if (data.prediction === 'Approved') {
+            exploreLoanBtn.style.display = 'inline-flex';
+        } else {
+            exploreLoanBtn.style.display = 'none';
+        }
+        
+    } catch (error) {
+        console.error('Error:', error);
+        showError(error.message || 'Failed to process your request. Please try again.');
+    }
+};
+
+// Handle explore loan button click
+async function handleExploreLoan() {
+    if (!currentFormData) {
+        showError('No loan data available. Please submit the form first.');
+        return;
+    }
+    
+    showLoading();
+    exploreLoanBtn.disabled = true;
+    
+    try {
+        const response = await fetch(`${API_BASE_URL}/explore_loans`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(currentFormData)
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        if (data.error) {
+            throw new Error(data.error);
+        }
+        
+        displayLoanRecommendations(data);
+        
+    } catch (error) {
+        console.error('Error:', error);
+        showError(error.message || 'Failed to fetch loan recommendations. Please try again.');
+        exploreLoanBtn.disabled = false;
+    }
+}
+
+// Display loan recommendations
+function displayLoanRecommendations(data) {
+    hideLoading();
+    
+    // Hide result and form containers
+    resultContainer.style.display = 'none';
+    formContainer.style.display = 'none';
+    
+    // Show recommendations container
+    recommendationsContainer.style.display = 'block';
+    
+    // Clear previous recommendations
+    loansList.innerHTML = '';
+    
+    // Check if we have loans data
+    const loans = data.loans || [];
+    
+    if (loans.length === 0) {
+        loansList.innerHTML = `
+            <div class="loan-card">
+                <p style="text-align: center; color: #666;">No loan recommendations available at this time.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // Create loan cards
+    loans.forEach((loan, index) => {
+        const loanCard = document.createElement('div');
+        loanCard.className = 'loan-card';
+
+        // Render interest rate as hyperlink if 'See website' and link present
+        let interestRateHtml = '';
+        if (
+            loan.interest_rate &&
+            loan.interest_rate.trim().toLowerCase() === 'see website' &&
+            loan.link
+        ) {
+            interestRateHtml = `<a href="${loan.link}" target="_blank" rel="noopener noreferrer">See website</a>`;
+        } else {
+            interestRateHtml = loan.interest_rate || 'See website';
+        }
+
+        loanCard.innerHTML = `
+            <div class="loan-card-header">
+                <div class="loan-card-title">
+                    <i class="fas fa-building" style="color: #667eea; margin-right: 8px;"></i>
+                    ${loan.bank_name || 'Bank Name'}
+                </div>
+                <div class="loan-rating">
+                    <i class="fas fa-star"></i>
+                    <span>${loan.rating || 'N/A'}/10</span>
+                </div>
+            </div>
+            
+            <div class="loan-details">
+                <div class="loan-detail-item">
+                    <span class="loan-detail-label">Loan Type</span>
+                    <span class="loan-detail-value">${loan.loan_type || 'N/A'}</span>
+                </div>
+                <div class="loan-detail-item">
+                    <span class="loan-detail-label">Max Amount</span>
+                    <span class="loan-detail-value">${loan.max_amount || 'N/A'}</span>
+                </div>
+                <div class="loan-detail-item">
+                    <span class="loan-detail-label">Repayment Time</span>
+                    <span class="loan-detail-value">${loan.repayment_time || 'N/A'}</span>
+                </div>
+                <div class="loan-detail-item">
+                    <span class="loan-detail-label">Interest Rate</span>
+                    <span class="loan-detail-value">${interestRateHtml}</span>
+                </div>
+            </div>
+            
+            ${loan.reason ? `
+                <div class="loan-reason">
+                    <div class="loan-reason-label">
+                        <i class="fas fa-info-circle"></i> Why this loan?
+                    </div>
+                    <div class="loan-reason-text">${loan.reason}</div>
+                </div>
+            ` : ''}
+        `;
+        loansList.appendChild(loanCard);
+    });
+    
+    scrollToTop();
+}
+
+// Show results from recommendations
+function showResultsFromRecommendations() {
+    recommendationsContainer.style.display = 'none';
+    resultContainer.style.display = 'block';
+    exploreLoanBtn.disabled = false;
+    scrollToTop();
+}
+

@@ -49,7 +49,22 @@
                                         <option value="0">Salaried</option>
                                         <option value="1">Self Employed</option>
                                     </select>
-                                    <small>Your current employment status</small>
+                                    <small>Your employment status</small>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="loanType">Loan Type</label>
+                                    <select id="loanType" name="loan_type" required>
+                                        <option value="">Select Loan Type</option>
+                                        <option value="Personal Loan">Personal Loan</option>
+                                        <option value="Home Loan">Home Loan</option>
+                                        <option value="Car Loan">Car Loan</option>
+                                        <option value="Gold Loan">Gold Loan</option>
+                                        <option value="Property Loan">Property Loan</option>
+                                        <option value="Education Loan">Education Loan</option>
+                                        <option value="Business Loan">Business Loan</option>
+                                    </select>
+                                    <small>Type of loan you are applying for</small>
                                 </div>
                             </div>
                         </div>
@@ -139,10 +154,28 @@
                         </div>
                         <span id="confidenceText" class="confidence-text"></span>
                     </div>
-                    <button id="newApplicationBtn" class="btn btn-outline">
-                        <i class="fas fa-plus"></i> New Application
-                    </button>
+                    <div class="button-group">
+                        <button id="exploreLoanBtn" class="btn btn-primary" style="display: none;">
+                            <i class="fas fa-search"></i> Explore Loan Options
+                        </button>
+                        <button id="newApplicationBtn" class="btn btn-outline">
+                            <i class="fas fa-plus"></i> New Application
+                        </button>
+                    </div>
                 </div>
+            </div>
+
+            <!-- Loan Recommendations Container -->
+            <div id="recommendationsContainer" class="recommendations-container" style="display: none;">
+                <div class="recommendations-header">
+                    <i class="fas fa-list-ul"></i>
+                    <h2>Recommended Loans for You</h2>
+                    <p>Top 5 loan options based on your profile</p>
+                </div>
+                <div id="loansList" class="loans-list"></div>
+                <button id="backToResultBtn" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Back to Results
+                </button>
             </div>
 
             <!-- Loading Spinner -->

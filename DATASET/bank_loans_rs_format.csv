@@ -1,0 +1,76 @@
+Bank Name,Type of Loan,Max Amount,Repayment Time,Interest Rate Info,Direct Link 1,Direct Link 2
+Federal Bank,Personal Loan,As per eligibility,Up to 60 months,11.99 to 18.99,https://www.federalbank.co.in/personal-loan-interest-rates,https://www.federalbank.co.in/personal-loans
+Federal Bank,Home Loan,As per eligibility,Up to 30 years,See website,https://www.federalbank.co.in/home-loan-interest-rate,https://www.federalbank.co.in/housing-loans
+Federal Bank,Car Loan,Up to 95% of on-road price (new car),Up to 84 months,See website,https://www.federalbank.co.in/car-loan-interest-rate,https://www.federalbank.co.in/personal-car-loan
+Federal Bank,Gold Loan,As per gold pledge,Flexible,See website,https://www.federalbank.co.in/gold-loans-interest-rate,https://www.federalbank.co.in/gold-loans
+Federal Bank,Property Loan,As per property value & eligibility,Up to 15 years,See website,https://www.federalbank.co.in/property-loan-interest-rates,https://www.federalbank.co.in/property-power-personal
+Federal Bank,FedPremia (Personal Loan),Rs. 25 Lakh,Up to 48 months,See website,https://www.federalbank.co.in/personal-loan-interest-rates,https://www.federalbank.co.in/fedpremia
+Federal Bank,Education/Career Loan,As per course & eligibility,Up to 15 years (course-based),See website,https://www.federalbank.co.in/documents/d/guest/mclr-for-website-wef-16-10-25,https://www.federalbank.co.in/housing-loans
+Federal Bank,Loan against Sovereign Gold Bond,As per SGB value,Flexible,See website,https://www.federalbank.co.in/documents/d/guest/mclr-for-website-wef-16-10-25,https://www.federalbank.co.in/loan-against-sgb
+Federal Bank,Federal Easy Cash,As per eligibility,Short-term/Instant,See website,https://www.federalbank.co.in/documents/d/guest/mclr-for-website-wef-16-10-25,https://www.federalbank.co.in/easy-cash
+Federal Bank,Loan against Fixed Deposit,Up to FD value,Up to FD maturity,See website,https://www.federalbank.co.in/documents/d/guest/mclr-for-website-wef-16-10-25,https://www.federalbank.co.in/loans-against-fixed-deposits
+Federal Bank,Loan against Demat Shares,Up to shares value,Flexible depends on agreement,See website,https://www.federalbank.co.in/documents/d/guest/mclr-for-website-wef-16-10-25,https://www.federalbank.co.in/loan-against-shares
+State Bank of India (SBI),Personal Loan,As per eligibility,Up to 60 months,See website,https://www.sbi.co.in/personal-loan-interest-rates,https://www.sbi.co.in/personal-loans
+State Bank of India (SBI),Home Loan,As per eligibility,Up to 30 years,See website,https://www.sbi.co.in/home-loan-interest-rate,https://www.sbi.co.in/housing-loans
+State Bank of India (SBI),Car Loan,Up to 95% of on-road price (new car),Up to 84 months,See website,https://www.sbi.co.in/car-loan-interest-rate,https://www.sbi.co.in/personal-car-loan
+State Bank of India (SBI),Gold Loan,As per gold pledge,Flexible,See website,https://www.sbi.co.in/gold-loans-interest-rate,https://www.sbi.co.in/gold-loans
+State Bank of India (SBI),Property Loan,As per property value & eligibility,Up to 15 years,See website,https://www.sbi.co.in/property-loan-interest-rates,https://www.sbi.co.in/property-power-personal
+State Bank of India (SBI),FedPremia (Personal Loan),Rs. 25 Lakh,Up to 48 months,See website,https://www.sbi.co.in/personal-loan-interest-rates,https://www.sbi.co.in/fedpremia
+State Bank of India (SBI),Education/Career Loan,As per course & eligibility,Up to 15 years (course-based),See website,https://www.sbi.co.in/documents/d/guest/mclr-for-website-wef-16-10-25,https://www.sbi.co.in/housing-loans
+State Bank of India (SBI),Loan against Sovereign Gold Bond,As per SGB value,Flexible,See website,https://www.sbi.co.in/documents/d/guest/mclr-for-website-wef-16-10-25,https://www.sbi.co.in/loan-against-sgb
+State Bank of India (SBI),Federal Easy Cash,As per eligibility,Short-term/Instant,See website,https://www.sbi.co.in/documents/d/guest/mclr-for-website-wef-16-10-25,https://www.sbi.co.in/easy-cash
+State Bank of India (SBI),Loan against Fixed Deposit,Up to FD value,Up to FD maturity,See website,https://www.sbi.co.in/documents/d/guest/mclr-for-website-wef-16-10-25,https://www.sbi.co.in/loans-against-fixed-deposits
+State Bank of India (SBI),Loan against Demat Shares,Up to shares value,Flexible depends on agreement,See website,https://www.sbi.co.in/documents/d/guest/mclr-for-website-wef-16-10-25,https://www.sbi.co.in/loan-against-shares
+Canara Bank,Housing Loan,No upper limit (based on income),Up to 30 years,8.75% onwards,https://www.canarabank.bank.in/housing-loan,NA
+Canara Bank,Home Loan for NRIs,Based on eligibility,Up to 30 years,8.85% onwards,https://www.canarabank.bank.in/Home-loan-for-NRIs,NA
+Canara Bank,Housing Loan – Agriculturists,Based on eligibility,Up to 30 years,8.75% onwards,https://www.canarabank.bank.in/Housing-Loan-to-Agriculturists,NA
+Canara Bank,Canara Kuteer,Based on eligibility,Up to 30 years,8.75% onwards,https://www.canarabank.bank.in/Canara-Kuteer,NA
+Canara Bank,Housing cum Solar Loan,Based on eligibility,Up to 30 years,8.75% onwards,https://www.canarabank.bank.in/Housing-cum-Solar-Loan,NA
+Canara Bank,Housing Loan - Low/No Income Proof,Based on eligibility,Up to 30 years,8.95% onwards,https://www.canarabank.bank.in/pages/Housing-Loan-For-Customer-with-minimal-or-nil-income-proof,NA
+Canara Bank,Car Loan,Based on vehicle/income,Up to 84 months (7 years),8.80% onwards,https://canarabankcsis.in/GILA_CRM/,NA
+Canara Bank,Gold Loan,Based on gold value,Up to 12-36 months,~8.80% onwards,https://canarabankcsis.in/goldloan/WebForm1,NA
+Canara Bank,Education Loan (Vidyadhan PM Vidyalaxmi),As per course/country,Up to 15 years,8.75% onwards,https://pmvidyalaxmi.co.in/,NA
+HDFC Bank,Personal Loan,rs 40 Lakh (up to rs 75 Lakh for some cases),1 to 8 years,9.99% to 24.00% (Fixed),https://www.hdfcbank.com/personal/borrow/popular-loans/personal-loan,NA
+HDFC Bank,Indian Education Loan,rs 150 Lakh,Up to 15 years with moratorium,9.55% to 13.25% approx,https://www.hdfcbank.com/personal/borrow/popular-loans/educational-loan/educational-loan-for-indian-education,NA
+HDFC Bank,Gold Loan,Based on gold value,Up to 24 months,Varies,https://www.hdfcbank.com/personal/borrow/loan-against-assets/gold-loan,NA
+HDFC Bank,New Car Loan,Up to 90% of car value,Up to 7 years,Varies,https://www.hdfcbank.com/personal/borrow/popular-loans/new-car-loan,NA
+HDFC Bank,Used Car Loan,Up to 80% of car value,Up to 7 years,Varies,https://www.hdfcbank.com/personal/borrow/popular-loans/pre-owned-car-loan,NA
+HDFC Bank,Two Wheeler Loan,Based on vehicle value,Up to 5 years,Varies,https://www.hdfcbank.com/personal/borrow/popular-loans/two-wheeler-loan,NA
+HDFC Bank,Business Loan,Up to rs 50 Lakh (unsecured),Up to 5 years,Varies,https://www.hdfcbank.com/personal/borrow/popular-loans/business-loan,NA
+HDFC Bank,Loan Against Property,Up to rs 5 Crore,Up to 15 years,Varies,https://www.hdfcbank.com/personal/borrow/loan-against-assets#loan-against-property,NA
+HDFC Bank,Loan Against Securities,Based on securities value,Variable,Varies,https://www.hdfcbank.com/personal/borrow/loan-against-assets#loan-against-securities,NA
+HDFC Bank,Loan Against Rental Receivables,Up to 75% of rental income,Up to 10 years,Varies,https://www.hdfcbank.com/personal/borrow/loan-against-assets#loans-against-rental-receivables,NA
+HDFC Bank,Loan Against Car,Up to rs 10 Lakh,Up to 5 years,Varies,https://www.hdfcbank.com/personal/borrow/loan-against-assets#loan-against-car,NA
+HDFC Bank,Loan on Credit Card,Up to credit card limit,Flexible,Varies,https://www.hdfcbank.com/personal/borrow/loan-against-assets#loan-on-credit-card,NA
+HDFC Bank,Salary Plus (Overdraft),3x monthly salary (rs 25k to rs 1 Lakh),Flexible,Varies,https://www.hdfcbank.com/personal/borrow/loan-against-assets/Salary-Plus,NA
+Union Bank of India,Personal Loan,As per eligibility,Up to 5 years,From 10.35% p.a.,https://www.unionbankofindia.co.in/en/Listing/personal-loan,NA
+Union Bank of India,Home Loan,Up to 90% of property value,Up to 30 years,From 7.35% p.a. (floating),https://www.unionbankofindia.co.in/en/Listing/home-loan,NA
+Union Bank of India,Vehicle Loan (Car/Bike),Up to rs 20 lakh (used car) | No limit (new car),Up to 7 years (car),Up to 10.35% p.a. (car),https://www.unionbankofindia.co.in/en/Subcatlist/union-vehicle,NA
+Union Bank of India,Education Loan No ceiling (PM Vidyalaxmi),Up to rs 40 lakh (abroad),Up to 15 years (course-based),From 8.25% p.a.,https://www.unionbankofindia.co.in/en/Listing/education-loan,NA
+Union Bank of India,Gold Loan,Up to rs 50 lakh,Up to 3 years,EBLR + 0.7% to +1.75% (varies by scheme),https://www.unionbankofindia.co.in/en/Listing/gold-loan,NA
+Union Bank of India,Loan Against Property,Mortgage up to rs 10 crore,Up to 15 years,From 9% p.a.,https://www.unionbankofindia.co.in/en/Listing/Loan-Against-Property,NA
+Union Bank of India,Loan for Senior Citizens and Pensioners,As per eligibility,Up to 5 years,Special rates for seniors,https://www.unionbankofindia.co.in/en/Listing/loan-for-senior-citizen-and-pensioner,NA
+Union Bank of India,Rooftop Solar Loan,As per eligibility,Up to 15 years,Preferential green rates,https://www.unionbankofindia.co.in/en/Details/union-rooftop-solar,NA
+Bajaj Finserv,Personal Loan,Up to rs 55 Lakh,Up to 96 months,10%–31% p.a.,https://www.bajajfinserv.in/personal-loan,NA
+Bajaj Finserv,Business Loan,Up to rs 80 Lakh,Up to 96 months,14%–25% p.a.,https://www.bajajfinserv.in/business-loan,NA
+Bajaj Finserv,Doctor Loan,Up to rs 80 Lakh,Up to 96 months,Varies by applicant,https://www.bajajfinserv.in/doctor-loan,NA
+Bajaj Finserv,CA Loan,Up to rs 80 Lakh,Up to 96 months,Varies by applicant,https://www.bajajfinserv.in/chartered-accountant-loan,NA
+Bajaj Finserv,Lawyer Loan,Up to rs 30 Lakh,Up to 60 months,Varies by applicant,https://www.bajajfinserv.in/loan-for-lawyers,NA
+Bajaj Finserv,Gold Loan,Up to rs 2 Crore,Up to 36 months,9.5%–24% p.a.,https://www.bajajfinserv.in/gold-loan,NA
+Bajaj Finserv,Home Loan,Up to rs 15 Crore,Up to 32 years,7.45%–18% p.a.,https://www.bajajfinserv.in/home-loan,NA
+Bajaj Finserv,Loan Against Property,Up to rs 10.5 Crore,Up to 20 years,Starts at 8.45% p.a.,https://www.bajajfinserv.in/loan-against-property,NA
+Bajaj Finserv,Used Car Loan,Up to rs 47 Lakh,Up to 7 years,Varies by applicant,https://www.bajajfinserv.in/bmall/used-cars,NA
+Bajaj Finserv,Tractor Loan,Up to 95% of value,Flexible,Varies by applicant,https://www.bajajfinserv.in/bmall/all-tractors,NA
+Bajaj Finserv,Loan Against Securities,Up to rs 1000 Crore,Flexible,Low depends on asset,https://www.bajajfinserv.in/loan-against-shares,NA
+Bajaj Finserv,Two-wheeler Loan,Up to rs 21 Lakh,Up to 5 years,Varies by applicant,https://www.bajajfinserv.in/two-wheeler-loan,NA
+Bajaj Finserv,Loan Against Mutual Funds,Up to rs 5 Crore,Flexible,Low,https://www.bajajfinserv.in/loan-against-mutual-funds,NA
+Bajaj Finserv,Secured Business Loan,Up to rs 1.05 Crore,Up to 96 months,Varies,https://www.bajajfinserv.in/secured-business-loan,NA
+Bajaj Finserv,Equipment Finance,Up to rs 15 Crore,Flexible,Varies,https://www.bajajfinserv.in/industrial-equipment-finance,NA
+Bajaj Finserv,Easy EMI Loan,Up to rs 5 Lakh,Up to 36 months,Varies,https://www.bajajfinserv.in/easy-emi-consumer-durables-loan,NA
+Bajaj Finserv,Loan Against Car,Up to 90% of value,Up to 5 years,Varies,https://www.bajajfinserv.in/loan-against-car,NA
+Bajaj Finserv,Loan Against Insurance Policy,Up to rs 50 Lakh,Flexible,Varies,https://www.bajajfinserv.in/loan-against-insurance-policy,NA
+Bajaj Finserv,Loan Against Fixed Deposit,Up to FD value,Up to FD maturity,Varies,https://www.bajajfinserv.in/loan-against-fixed-deposit,NA
+Bajaj Finserv,Medical Equipment Finance,Up to rs 15 Crore,Flexible,Varies,https://www.bajajfinserv.in/medical-equipment-finance,NA
+Tata Capital Financial Services Ltd.,Personal Loan,rs 35 lakh,1 - 6 years,11.5% - 29.99%,https://www.urbanmoney.com/personal-loan/tata-capital-financial-services-ltd,NA
+Tata Capital Financial Services Ltd.,Loan Against Property,rs 1 crore,1 - 20 years,9% - 17%,https://www.urbanmoney.com/loan-against-property/tata-capital-financial-services-ltd,NA
+Tata Capital Financial Services Ltd.,Business Loan,rs 90 lakh,1 - 5 years,12.5% - 26%,https://www.urbanmoney.com/business-loan/tata-capital-financial-services-ltd,NA
