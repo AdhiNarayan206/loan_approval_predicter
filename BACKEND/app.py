@@ -117,9 +117,9 @@ CRITICAL INSTRUCTIONS:
 6. If the interest_rate field is 'See website', include a 'link' field in the output with the value from the corresponding 'Direct Link 1' field in the loan data. This allows the frontend to render 'See website' as a hyperlink.
 
 IMPORTANT: Return ONLY a valid JSON object with this exact structure (no markdown, no code blocks, no extra text):
-{
+{{
     "loans": [
-        {
+        {{
             "bank_name": "Bank Name",
             "loan_type": "Type of Loan",
             "max_amount": "Max Amount",
@@ -127,10 +127,10 @@ IMPORTANT: Return ONLY a valid JSON object with this exact structure (no markdow
             "interest_rate": "Interest Rate Info",
             "rating": 9.5,
             "reason": "Why this loan is suitable for the user",
-            "link": "https://example.com" // Only present if interest_rate is 'See website'
-        }
+            "link": "https://example.com"
+        }}
     ]
-}"""
+}}"""
 
         # Call Ollama API
         print("Calling Ollama API...")  # Debug
