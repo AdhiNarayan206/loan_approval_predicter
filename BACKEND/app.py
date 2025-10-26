@@ -48,6 +48,145 @@ def check_eligibility():
     except Exception as e:
         return jsonify({'error': 'Invalid input format', 'message': str(e)}), 400
 
+@app.route('/explore_loans', methods=['POST'])
+def explore_loans():
+    try:
+        import requests
+        import pandas as pd
+        import json
+
+        print("Received explore_loans request")  # Debug
+
+        data = request.get_json(force=True)
+        print(f"Request data: {data}")  # Debug
+
+        # Load bank loans dataset
+        csv_path = os.path.join(current_dir, '..', 'DATASET', 'bank_loans_rs_format.csv')
+        print(f"CSV path: {csv_path}")  # Debug
+        loans_df = pd.read_csv(csv_path)
+        print(f"Loaded {len(loans_df)} loans")  # Debug
+
+        # Filter loans by loan type if specified
+        loan_type = data.get('loan_type', '')
+        if loan_type:
+            # Filter for matching loan types (case-insensitive partial match)
+            filtered_loans = loans_df[loans_df['Type of Loan'].str.contains(loan_type, case=False, na=False)]
+            if len(filtered_loans) > 0:
+                loans_df = filtered_loans
+
+        # Prepare user details for the LLM
+        user_details = f"""
+        Number of Dependents: {data['no_of_dependents']}
+        Education: {'Graduate' if data['education'] == 1 else 'Not Graduate'}
+        Self Employed: {'Yes' if data['self_employed'] == 1 else 'No'}
+        Annual Income: Rs. {data['income_annum']:,}
+        Loan Amount: Rs. {data['loan_amount']:,}
+        Loan Term: {data['loan_term']} months
+        CIBIL Score: {data['cibil_score']}
+        Residential Assets Value: Rs. {data['residential_assets_value']:,}
+        Commercial Assets Value: Rs. {data['commercial_assets_value']:,}
+        Luxury Assets Value: Rs. {data['luxury_assets_value']:,}
+        Bank Asset Value: Rs. {data['bank_asset_value']:,}
+        Loan Type Needed: {loan_type}
+        """
+
+        # Convert loans dataframe to a list of dicts for easier processing
+        loans_list = loans_df.to_dict(orient='records')
+
+        # Prepare prompt for Ollama
+        # Pass the loans as JSON so the LLM can use all fields
+        loans_json = json.dumps(loans_list, ensure_ascii=False)
+        prompt = f"""You are a financial advisor AI. Based on the user's financial profile and the available bank loans, recommend the TOP 5 most suitable loans with a rating out of 10 for each.
+
+USER FINANCIAL PROFILE:
+{user_details}
+
+AVAILABLE BANK LOANS (JSON):
+{loans_json}
+
+CRITICAL INSTRUCTIONS:
+1. The user specifically needs: "{loan_type}" - ONLY recommend loans matching this type
+2. Analyze the user's income ({data['income_annum']:,}), CIBIL score ({data['cibil_score']}), and assets
+3. Select the 5 most suitable "{loan_type}" loans from the available options
+4. Rate each loan from 1-10 based on:
+     - How well it matches the user's loan type requirement (MOST IMPORTANT)
+     - Interest rates and repayment terms suitability
+     - User's eligibility based on CIBIL score and income
+     - Loan amount compatibility with user's request ({data['loan_amount']:,})
+5. Provide a brief, specific reason for each recommendation
+6. If the interest_rate field is 'See website', include a 'link' field in the output with the value from the corresponding 'Direct Link 1' field in the loan data. This allows the frontend to render 'See website' as a hyperlink.
+
+IMPORTANT: Return ONLY a valid JSON object with this exact structure (no markdown, no code blocks, no extra text):
+{{
+    "loans": [
+        {{
+            "bank_name": "Bank Name",
+            "loan_type": "Type of Loan",
+            "max_amount": "Max Amount",
+            "repayment_time": "Repayment Time",
+            "interest_rate": "Interest Rate Info",
+            "rating": 9.5,
+            "reason": "Why this loan is suitable for the user",
+            "link": "https://example.com"
+        }}
+    ]
+}}"""
+
+        # Call Ollama API
+        print("Calling Ollama API...")  # Debug
+        try:
+            ollama_response = requests.post(
+                'http://localhost:11434/api/generate',
+                json={
+                    'model': 'loanexplorerV2',
+                    'prompt': prompt,
+                    'stream': False,
+                    'options': {
+                        'temperature': 0.0,
+                        'num_predict': 1024
+                    }
+                },
+                timeout=120
+            )
+            print(f"Ollama response status: {ollama_response.status_code}")  # Debug
+            print(f"Ollama raw response: {ollama_response.text}")  # Debug
+        except Exception as ollama_exc:
+            print(f"Error calling Ollama: {ollama_exc}")
+            import traceback
+            traceback.print_exc()
+            return jsonify({'error': 'Failed to connect to Ollama', 'message': str(ollama_exc)}), 500
+
+        if ollama_response.status_code == 200:
+            result = ollama_response.json()
+            llm_response = result['response']
+
+            # Try to parse the JSON response
+            try:
+                # Clean up the response (remove markdown code blocks if present)
+                llm_response = llm_response.strip()
+                if llm_response.startswith('```'):
+                    llm_response = llm_response.split('```')[1]
+                    if llm_response.startswith('json'):
+                        llm_response = llm_response[4:]
+                    llm_response = llm_response.strip()
+
+                recommendations = json.loads(llm_response)
+                return jsonify(recommendations)
+            except json.JSONDecodeError:
+                # If JSON parsing fails, return the raw response
+                return jsonify({
+                    'raw_response': llm_response,
+                    'note': 'LLM response was not in valid JSON format'
+                })
+        else:
+            return jsonify({'error': 'LLM service unavailable', 'status': ollama_response.status_code}), 503
+
+    except Exception as e:
+        print(f"Error in explore_loans: {str(e)}")  # Debug
+        import traceback
+        traceback.print_exc()  # Debug - print full stack trace
+        return jsonify({'error': 'Failed to process request', 'message': str(e)}), 500
+
 if __name__ == '__main__':
     
     port = int(os.environ.get('PORT', 5000))  # Use Render's PORT or default to 5000
